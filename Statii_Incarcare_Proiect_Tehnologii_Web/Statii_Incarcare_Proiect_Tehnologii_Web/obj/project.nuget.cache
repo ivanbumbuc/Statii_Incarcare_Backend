@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "dgSpecHash": "ijRsZK3h3e41qEWibxCXcZ16FbORLXm7HSdn+hODj4WU++MgITT1+D0E2FrenTeQOzaRu+4d1xGo6xtGMsHf8A==",
+  "success": true,
+  "projectFilePath": "E:\\Proiect Tehnologii Web\\Backend\\Statii_Incarcare_Proiect_Tehnologii_Web\\Statii_Incarcare_Proiect_Tehnologii_Web\\Statii_Incarcare_Proiect_Tehnologii_Web.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.extensions.apidescription.server\\3.0.0\\microsoft.extensions.apidescription.server.3.0.0.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\swashbuckle.aspnetcore\\6.2.3\\swashbuckle.aspnetcore.6.2.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\swashbuckle.aspnetcore.swagger\\6.2.3\\swashbuckle.aspnetcore.swagger.6.2.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggergen\\6.2.3\\swashbuckle.aspnetcore.swaggergen.6.2.3.nupkg.sha512",
+    "C:\\Users\\asus\\.nuget\\packages\\swashbuckle.aspnetcore.swaggerui\\6.2.3\\swashbuckle.aspnetcore.swaggerui.6.2.3.nupkg.sha512"
+  ],
+  "logs": []
+}

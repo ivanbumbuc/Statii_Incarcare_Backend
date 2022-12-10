@@ -5,15 +5,16 @@ using Statii_Incarcare_Proiect_Tehnologii_Web.Entities;
 
 namespace Statii_Incarcare_Proiect_Tehnologii_Web.Context;
 
-public partial class StatiiContext : DbContext
+public partial class StatiiIncarcareContext : DbContext
 {
-    public StatiiContext()
+    public StatiiIncarcareContext()
     {
     }
 
-    public StatiiContext(DbContextOptions<DbContext> options)
+    public StatiiIncarcareContext(DbContextOptions<DbContext> options)
         : base(options)
     {
+        
     }
 
     public virtual DbSet<Booking> Bookings { get; set; }
@@ -32,7 +33,10 @@ public partial class StatiiContext : DbContext
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
     {
-
+        if (!optionsBuilder.IsConfigured)
+        {
+               optionsBuilder.UseSqlServer("Server=KOKI\\SQLEXPRESS;Database=Statii;Trusted_Connection=True;Encrypt=False;");
+        }
     }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder)

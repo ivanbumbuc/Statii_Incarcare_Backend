@@ -35,7 +35,7 @@ public partial class StatiiIncarcareContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-               optionsBuilder.UseSqlServer("Server=KOKI\\SQLEXPRESS;Database=Statii;Trusted_Connection=True;Encrypt=False;");
+            optionsBuilder.UseSqlServer("Server=KOKI\\SQLEXPRESS;Database=Statii;Trusted_Connection=True;encrypt=false;");
         }
     }
 

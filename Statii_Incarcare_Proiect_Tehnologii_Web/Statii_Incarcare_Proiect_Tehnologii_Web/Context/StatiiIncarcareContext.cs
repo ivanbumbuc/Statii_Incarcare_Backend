@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Statii_Incarcare_Proiect_Tehnologii_Web.Entities;
 
 namespace Statii_Incarcare_Proiect_Tehnologii_Web.Context;

@@ -21,7 +21,8 @@ namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
         [HttpPost("login")]
         public async Task<IActionResult> Login(UserDto userModel)
         {
-            var user = await _incarcareContext.Users.FirstOrDefaultAsync(u => u.name == userModel.email && u.password == userModel.password);
+            var user = await _incarcareContext.Users.FirstOrDefaultAsync(u =>
+                u.name == userModel.email && u.password == userModel.password);
             if (user == null)
                 return Unauthorized(new { message = "Username or password is incorrect" });
             else
@@ -44,6 +45,5 @@ namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
                     );
             }
         }
-        
     }
 }

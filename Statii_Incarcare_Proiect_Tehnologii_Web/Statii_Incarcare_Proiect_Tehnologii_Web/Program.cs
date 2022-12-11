@@ -5,10 +5,7 @@ var builder = WebApplication.CreateBuilder(args);
 
 // conection to database
 string connection = builder.Configuration.GetConnectionString("DefaultConnection");
-builder.Services.AddDbContext<StatiiIncarcareContext>(options =>
-{
-    options.UseSqlServer(connection);
-});
+builder.Services.AddDbContext<StatiiIncarcareContext>(options => { options.UseSqlServer(connection); });
 
 builder.Services.AddCors(o => o.AddPolicy("CORSPolicy", builder =>
 {

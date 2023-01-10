@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Statii_Incarcare_Proiect_Tehnologii_Web.Context;
+using Statii_Incarcare_Proiect_Tehnologii_Web.Dto;
+using Statii_Incarcare_Proiect_Tehnologii_Web.Entities;
 
 namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
 {
@@ -15,7 +17,7 @@ namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
         {
             _incarcareContext = context;
         }
-        
+
         [AllowAnonymous]
         [HttpGet("getAllStations")]
         public async Task<IActionResult> GetAllStationsFromCity(String city)
@@ -59,6 +61,23 @@ namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
                     longitude = x.coordY
                 }).ToList();
             return Ok(stations);
+        }
+
+        [AllowAnonymous]
+        [HttpPost("addStation")]
+        public async Task<IActionResult> AddStation(StationDto station)
+        {
+            var newStation = new Station
+            {
+                name = station.name,
+                city = station.city,
+                address = station.address,
+                coordX = station.coordX,
+                coordY = station.coordY
+            };
+            _incarcareContext.Stations.Add(newStation);
+            await _incarcareContext.SaveChangesAsync();
+            return Ok(newStation.id);
         }
     }
 }

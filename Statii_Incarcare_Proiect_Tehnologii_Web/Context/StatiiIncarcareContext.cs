@@ -33,7 +33,7 @@ public partial class StatiiIncarcareContext : DbContext
     {
         if (!optionsBuilder.IsConfigured)
         {
-            optionsBuilder.UseSqlServer("Server=KOKI\\SQLEXPRESS;Database=Statii;Trusted_Connection=True;encrypt=false;");
+            optionsBuilder.UseSqlServer("Server=LENOVO;Database=Statii;Trusted_Connection=True;encrypt=false;");
         }
     }
 

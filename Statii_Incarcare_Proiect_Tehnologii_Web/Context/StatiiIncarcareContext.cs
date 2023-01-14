@@ -115,8 +115,8 @@ public partial class StatiiIncarcareContext : DbContext
             entity.Property(e => e.city)
                 .HasMaxLength(255)
                 .IsUnicode(false);
-            entity.Property(e => e.coordX).HasColumnType("decimal(18, 0)");
-            entity.Property(e => e.coordY).HasColumnType("decimal(18, 0)");
+            entity.Property(e => e.coordX).HasColumnType("float");
+            entity.Property(e => e.coordY).HasColumnType("float");
             entity.Property(e => e.name)
                 .HasMaxLength(255)
                 .IsUnicode(false);

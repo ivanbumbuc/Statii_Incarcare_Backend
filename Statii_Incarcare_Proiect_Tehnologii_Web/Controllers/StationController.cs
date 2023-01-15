@@ -77,6 +77,13 @@ namespace Statii_Incarcare_Proiect_Tehnologii_Web.Controllers
             };
             _incarcareContext.Stations.Add(newStation);
             await _incarcareContext.SaveChangesAsync();
+            var stationToAdmin = new StationToAdmin
+            {
+                station_id = newStation.id,
+                admin_id = station.idUser
+            };
+            _incarcareContext.StationToAdmins.Add(stationToAdmin);
+            await _incarcareContext.SaveChangesAsync();
             return Ok(newStation.id);
         }
     }

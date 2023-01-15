@@ -11,4 +11,7 @@ public class StationDto
     public decimal coordX { get; set; }
 
     public decimal coordY { get; set; }
+    
+    public Guid idUser { get; set; }
+
 }

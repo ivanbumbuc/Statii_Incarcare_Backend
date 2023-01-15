@@ -67,20 +67,23 @@ public class BookingController : ControllerBase
     [HttpGet("getAvailableStartingHours")]
     public async Task<IActionResult> GetAvailableStartingHours(string plugId)
     {
+        if (_incarcareContext.Plugs.Where(p => p.id.ToString() == plugId).Count() == 0)
+            return NotFound("Plug does not exist.");
+
         var availableHours = new List<string>();
         var bookings = _incarcareContext.Bookings.Where(b => b.plug_id.ToString() == plugId).ToList();
         var hours = Enumerable.Repeat(true, 24).ToArray();
         var nextAvailableHour = DateTime.Now.TimeOfDay.Hours + 1;
-        for (var i = 0; i < nextAvailableHour; i++) hours[i] = false;
+        for (var i = 0; i < nextAvailableHour; i++)
+            hours[i] = false;
 
         foreach (var booking in bookings)
             if (booking.start_time.Date == DateTime.Now.Date)
             {
                 var startHour = booking.start_time.TimeOfDay.Hours;
                 var endHour = booking.end_time.TimeOfDay.Hours;
-                if (booking.end_time.TimeOfDay.Hours == 0) endHour = 24;
 
-                for (var i = startHour; i < endHour; i++) hours[i] = false;
+                for (var i = startHour; i <= endHour; i++) hours[i] = false;
             }
 
         for (var i = 0; i < 24; i++)
@@ -99,10 +102,13 @@ public class BookingController : ControllerBase
     [HttpGet("getAvailableEndingHours")]
     public async Task<IActionResult> GetAvailableEndingHours(string startingHour, string plugId)
     {
+        if (_incarcareContext.Plugs.Where(p => p.id.ToString() == plugId).Count() == 0)
+            return NotFound("Plug does not exist.");
+
         var availableHours = new List<string>();
         var bookings = _incarcareContext.Bookings.Where(b => b.plug_id.ToString() == plugId).ToList();
-        var hours = Enumerable.Repeat(true, 25).ToArray();
-        var nextAvailableHour = int.Parse(startingHour.Split(':')[0]) + 1;
+        var hours = Enumerable.Repeat(true, 24).ToArray();
+        var nextAvailableHour = int.Parse(startingHour.Split(':')[0]);
 
         for (var i = 0; i < nextAvailableHour; i++) hours[i] = false;
 
@@ -110,24 +116,25 @@ public class BookingController : ControllerBase
             if (booking.start_time.Date == DateTime.Now.Date)
             {
                 var startHour = booking.start_time.TimeOfDay.Hours;
-                var endHour = booking.end_time.TimeOfDay.Hours + 1;
-                if (booking.end_time.TimeOfDay.Hours == 0) endHour = 24;
+                var endHour = booking.end_time.TimeOfDay.Hours;
 
-                for (var i = startHour + 1; i < endHour; i++) hours[i] = false;
+                for (var i = startHour; i < endHour; i++) hours[i] = false;
             }
 
-        for (var i = nextAvailableHour; i < 25; i++)
+        for (var i = nextAvailableHour; i < 24; i++)
+        {
             if (hours[i])
             {
-                if (i - 1 < 10)
-                    availableHours.Add("0" + (i - 1) + ":59");
+                if (i < 10)
+                    availableHours.Add("0" + (i) + ":59");
                 else
-                    availableHours.Add(i - 1 + ":59");
+                    availableHours.Add(i + ":59");
             }
             else
             {
                 break;
             }
+        }
 
         return Ok(availableHours);
     }
